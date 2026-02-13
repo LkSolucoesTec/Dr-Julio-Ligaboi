@@ -1,0 +1,676 @@
+/* style.css - Versão "Turquoise Tech Luxury" */
+
+/* =========================================
+   1. Variáveis & Reset (Paleta Turquoise)
+   ========================================= */
+:root {
+    /* Paleta baseada na imagem download (8).jpg */
+    --bg-deep: #222831;      /* Preto Azulado (Base Profunda) */
+    --bg-slate: #283b48;     /* Azul Ardósia (Transições) */
+    --accent: #00a6c0;       /* Turquesa Neon (O "Ponto de Luz") */
+    --text-light: #d8d7ce;   /* Branco Off-White (Texto e Contraste) */
+    
+    --glass-bg: rgba(34, 40, 49, 0.85); /* Vidro escuro */
+    
+    /* Fontes */
+    --font-title: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+    
+    /* Transições */
+    --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-deep);
+    color: var(--text-light);
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* Utilitários */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    color: white; /* Mais brilho no título */
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+    z-index: 2;
+}
+
+.section-title.center { display: block; text-align: center; }
+
+/* Detalhe sofisticado abaixo do título (Turquesa brilhante) */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    margin-top: 15px;
+    box-shadow: 0 0 15px var(--accent); /* Efeito neon */
+    border-radius: 2px;
+}
+.section-title.center::after { margin: 15px auto 0; }
+
+.highlight {
+    color: var(--accent);
+    font-weight: 700;
+    text-shadow: 0 0 20px rgba(0, 166, 192, 0.3);
+}
+
+/* Botões Modernos */
+.btn {
+    display: inline-block;
+    padding: 16px 45px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 50px; /* Arredondado estilo pílula */
+    cursor: pointer;
+    font-size: 0.85rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: var(--transition);
+}
+
+.btn-gold {
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+}
+
+.btn-gold:hover {
+    background: var(--accent);
+    color: var(--bg-deep);
+    box-shadow: 0 0 30px rgba(0, 166, 192, 0.6);
+    transform: translateY(-5px);
+}
+
+/* =========================================
+   2. Elementos Abstratos & Transições
+   ========================================= */
+
+/* Fundo com padrão de linhas suaves (Tech Elegance) */
+.has-abstract-bg {
+    position: relative;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(0, 166, 192, 0.08) 0%, transparent 50%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 40px);
+}
+
+/* Divisores de Seção (Gradient suave para evitar linhas duras) */
+.section-divider {
+    height: 100px;
+    width: 100%;
+    background: linear-gradient(to bottom, var(--bg-deep), var(--bg-slate));
+}
+
+.section-divider-reverse {
+    height: 100px;
+    width: 100%;
+    background: linear-gradient(to bottom, var(--bg-slate), var(--bg-deep));
+}
+
+/* =========================================
+   3. Navbar (Glassmorphism Arredondado)
+   ========================================= */
+.navbar {
+    position: fixed;
+    top: 20px; /* Flutua um pouco abaixo do topo */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 1300px;
+    padding: 15px 40px;
+    z-index: 1000;
+    transition: 0.5s ease;
+    border-radius: 60px; /* Bordas bem arredondadas */
+    background: rgba(255, 255, 255, 0.02); /* Quase invisível no topo */
+    backdrop-filter: blur(3px);
+}
+
+/* Estado Rola (Scrolled) */
+.navbar.scrolled {
+    background: rgba(34, 40, 49, 0.8); /* Fundo escuro semitransparente */
+    backdrop-filter: blur(20px); /* Blur intenso estilo iOS */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    padding: 12px 40px;
+    top: 10px;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-family: var(--font-title);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.nav-links ul { display: flex; gap: 40px; }
+
+.nav-links a {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-light);
+    opacity: 0.8;
+    position: relative;
+}
+
+.nav-links a:hover { opacity: 1; color: var(--accent); }
+
+/* Ícones Sociais (Maiores e com Efeito) */
+.social-icons { display: flex; gap: 20px; align-items: center; }
+
+.social-icons a { 
+    color: white; 
+    font-size: 1.4rem; /* Maior */
+    transition: var(--transition);
+    display: flex; align-items: center;
+}
+
+.social-icons a:hover { 
+    transform: scale(1.3) rotate(5deg); /* Aumenta e gira levemente */
+    color: var(--accent); 
+    text-shadow: 0 0 15px var(--accent);
+}
+
+.mobile-menu-icon { display: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+/* =========================================
+   4. Hero Section (Impacto Profundo)
+   ========================================= */
+.hero-section {
+    padding-top: 180px;
+    padding-bottom: 100px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    /* Degradê sutil de fundo */
+    background: radial-gradient(circle at top right, #283b48 0%, var(--bg-deep) 60%);
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    z-index: 2;
+}
+
+.hero-text-col { flex: 1; }
+
+.hero-text-col h1 {
+    font-family: var(--font-title);
+    font-size: 4.2rem;
+    line-height: 1.1;
+    color: white;
+    margin-bottom: 25px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.hero-text-col .slogan {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--accent);
+    margin-bottom: 40px;
+    border-left: 3px solid var(--accent);
+    padding-left: 20px;
+    letter-spacing: 1px;
+}
+
+.hero-image-col { flex: 1; display: flex; justify-content: flex-end; position: relative; }
+
+.hero-img {
+    border-radius: 20px; /* Bordas suaves */
+    box-shadow: -20px 20px 60px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.1);
+    position: relative; z-index: 2;
+}
+
+/* Efeito de luz atrás da imagem */
+.hero-image-col::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; height: 80%;
+    background: var(--accent);
+    filter: blur(80px); /* Glow intenso */
+    opacity: 0.2;
+    z-index: 1;
+}
+
+/* =========================================
+   5. Seção Sobre (Transição Slate)
+   ========================================= */
+.about-section {
+    padding: 120px 0;
+    /* Fundo Slate para contraste suave */
+    background-color: var(--bg-slate);
+    position: relative;
+}
+
+/* Linha decorativa no topo (Fade in) */
+.about-section::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 150px;
+    background: linear-gradient(to bottom, var(--bg-deep), transparent);
+}
+
+.about-container { display: flex; align-items: center; gap: 80px; position: relative; z-index: 2; }
+
+.about-image-col { flex: 1; }
+.about-img {
+    border-radius: 8px;
+    filter: grayscale(100%); /* Preto e Branco elegante */
+    transition: 0.5s;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.about-img:hover { filter: grayscale(0%); transform: scale(1.02); }
+
+.about-text-col { flex: 1; }
+.about-text-col h2 {
+    font-family: var(--font-title);
+    font-size: 2.8rem;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.about-text-col .lead-text {
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+/* =========================================
+   6. Áreas de Atuação (Cards Elegantes)
+   ========================================= */
+.services-section {
+    padding: 140px 0;
+    background-color: var(--bg-deep); /* Volta para o escuro */
+}
+
+/* Transição do Slate para o Deep */
+.services-section::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 150px;
+    background: linear-gradient(to bottom, var(--bg-slate), transparent);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    position: relative; z-index: 2;
+}
+
+.service-item {
+    background: rgba(40, 59, 72, 0.4); /* Fundo muito sutil */
+    padding: 50px 35px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: var(--transition);
+}
+
+.service-item:hover {
+    background: rgba(40, 59, 72, 0.8);
+    transform: translateY(-10px);
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.service-item i {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 25px;
+    transition: 0.3s;
+}
+
+.service-item:hover i { transform: scale(1.2); text-shadow: 0 0 15px var(--accent); }
+
+.service-item h3 {
+    color: white;
+    margin-bottom: 15px;
+    font-family: var(--font-title);
+    font-size: 1.4rem;
+}
+
+.service-item p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+
+/* =========================================
+   7. Contato Split (Alinhamento Perfeito)
+   ========================================= */
+.contact-section { 
+    padding: 0; 
+    background-color: #1a1c24; /* Mais escuro ainda para o fim */
+}
+
+.contact-wrapper {
+    display: flex; 
+    flex-wrap: wrap;
+    align-items: stretch; /* O SEGREDO: Estica para altura igual */
+    width: 100%;
+}
+
+/* Lado Esquerdo: Form */
+.contact-form-area {
+    flex: 1;
+    padding: 100px 5%;
+    background: var(--bg-deep);
+    display: flex; flex-direction: column; justify-content: center;
+}
+
+.contact-form-area h3 { color: white; margin-bottom: 10px; font-size: 2rem; font-family: var(--font-title); }
+
+.form-elegant input, .form-elegant select, .form-elegant textarea {
+    width: 100%;
+    padding: 18px;
+    margin-bottom: 25px;
+    background-color: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    border-radius: 8px;
+    font-family: var(--font-body);
+}
+
+.form-elegant input:focus, .form-elegant textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(0, 166, 192, 0.2);
+}
+
+.btn-block { width: 100%; background: var(--accent); color: white; border: none; }
+.btn-block:hover { background: #008fa6; box-shadow: 0 0 20px rgba(0, 166, 192, 0.4); }
+
+/* =========================================
+   7. Contato Split (Refinado & Pulsante)
+   ========================================= */
+
+/* Animação de Pulso para o Botão */
+@keyframes pulse-green {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); /* Efeito de onda */
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+.contact-section { 
+    padding: 0; 
+    /* Fundo base escuro */
+    background-color: var(--bg-deep); 
+    position: relative;
+    z-index: 5;
+}
+
+.contact-wrapper {
+    display: flex; 
+    flex-wrap: wrap;
+    align-items: stretch; 
+    width: 100%;
+}
+
+/* Lado Esquerdo: Formulário */
+.contact-form-area {
+    flex: 1.2; /* Dá um pouco mais de espaço horizontal ao form */
+    padding: 100px 8%; /* Mais respiro lateral */
+    background: var(--bg-deep);
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-form-area h3 { 
+    color: white; 
+    margin-bottom: 15px; 
+    font-size: 2.2rem; 
+    font-family: var(--font-title); 
+}
+
+.contact-form-area p {
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+    font-size: 1rem;
+}
+
+.form-elegant input, .form-elegant select, .form-elegant textarea {
+    width: 100%;
+    padding: 20px; /* Inputs mais altos e luxuosos */
+    margin-bottom: 25px;
+    background-color: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08); /* Borda quase invisível */
+    color: white;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    transition: var(--transition);
+}
+
+.form-elegant input:focus, .form-elegant textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background-color: rgba(0, 166, 192, 0.05); /* Leve toque turquesa no fundo */
+    box-shadow: 0 0 15px rgba(0, 166, 192, 0.1);
+}
+
+.btn-block { width: 100%; background: var(--accent); color: white; border: none; }
+.btn-block:hover { background: #008fa6; box-shadow: 0 10px 30px rgba(0, 166, 192, 0.3); }
+
+/* Lado Direito: WhatsApp (Redesenhado) */
+.contact-whatsapp-area {
+    flex: 1;
+    /* Degradê suave da esquerda (cor do form) para direita (cor slate) */
+    background: linear-gradient(90deg, var(--bg-deep) 0%, var(--bg-slate) 100%);
+    padding: 100px 5%;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    /* Sombra suave à esquerda para criar profundidade sobre o form */
+    box-shadow: -20px 0 50px rgba(0,0,0,0.3); 
+    border-left: none; /* Removemos a linha dura */
+}
+
+/* Ícone de fundo gigante decorativo */
+.contact-whatsapp-area::before {
+    content: '\f232'; /* FontAwesome WhatsApp Icon */
+    font-family: "Font Awesome 6 Brands";
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-size: 25rem;
+    color: rgba(255,255,255,0.02); /* Muito sutil */
+    z-index: 1;
+    pointer-events: none;
+}
+
+.whatsapp-content {
+    position: relative;
+    z-index: 2;
+    max-width: 450px; /* Limita largura para não espalhar o texto */
+}
+
+/* Título de Impacto */
+.whatsapp-content h3 {
+    font-family: var(--font-title);
+    font-size: 3.0rem; /* Muito maior */
+    line-height: 1.1;
+    color: white;
+    margin-bottom: 20px;
+    text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+/* Subtítulo de Ação */
+.whatsapp-content p {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: var(--accent); /* Cor turquesa para destacar */
+    margin-bottom: 50px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Botão WhatsApp Pulsante */
+.btn-whatsapp {
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 15px;
+    padding: 25px 60px; /* Botão generoso */
+    background-color: #25D366;
+    color: white;
+    font-weight: 800; /* Extra bold */
+    border-radius: 100px;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    /* Aplica a animação criada acima */
+    animation: pulse-green 2s infinite;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-whatsapp:hover { 
+    background-color: #1ebe57; 
+    animation: none; /* Para a animação no hover para feedback estático */
+    transform: scale(1.1); /* Cresce um pouco */
+    box-shadow: 0 10px 40px rgba(37, 211, 102, 0.5);
+}
+
+/* Responsividade do Contato */
+@media (max-width: 900px) {
+    .contact-wrapper { flex-direction: column; }
+    
+    .contact-whatsapp-area {
+        padding: 80px 20px;
+        background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-slate) 100%); /* Degradê vertical no mobile */
+        box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.5); /* Sombra interna no topo */
+    }
+    
+    .whatsapp-content h3 { font-size: 2.5rem; }
+    .btn-whatsapp { width: 100%; padding: 20px; }
+}
+
+/* =========================================
+   8. Footer & Mobile
+   ========================================= */
+.main-footer {
+    padding: 50px 0;
+    background-color: #15171e;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer-logo h4 { color: var(--accent); letter-spacing: 2px; margin-bottom: 20px; }
+
+@media (max-width: 992px) {
+    .hero-text-col h1 { font-size: 3.5rem; }
+}
+
+@media (max-width: 768px) {
+    .navbar { top: 0; width: 100%; border-radius: 0; padding: 15px 20px; }
+    .navbar.scrolled { top: 0; padding: 15px 20px; border-radius: 0; }
+    .hero-section { padding-top: 120px; text-align: center; }
+    .hero-container, .about-container { flex-direction: column-reverse; }
+    .contact-wrapper { flex-direction: column; }
+    
+    .nav-links { display: none; } 
+    .mobile-menu-icon { display: block; }
+    
+    .nav-links.active {
+        display: flex; position: fixed; top: 70px; left: 0; width: 100%;
+        background-color: var(--bg-deep); padding: 30px; flex-direction: column;
+        border-bottom: 1px solid var(--accent);
+    }
+}
+
+/* Layout Específico 2x2+1 para Serviços */
+.services-grid.layout-2-2-1 {
+    display: grid;
+    /* Força exatamente 2 colunas de tamanho igual */
+    grid-template-columns: 1fr 1fr; 
+    gap: 30px;
+}
+
+/* Estilo do Card Full (Mentoria) */
+.service-item.service-full {
+    /* Faz o card ocupar todas as colunas da linha (de 1 até o final) */
+    grid-column: 1 / -1; 
+    
+    /* Destaque visual para diferenciar */
+    background: linear-gradient(135deg, var(--blue-main), var(--blue-deep));
+    text-align: center;
+    border: 1px solid var(--accent); /* Borda sutil na cor de destaque */
+}
+
+/* Ajustes de texto dentro do card full */
+.service-item.service-full h3,
+.service-item.service-full p, 
+.service-item.service-full i {
+    color: white; /* Garante leitura no fundo azul */
+}
+
+.service-item.service-full p {
+    max-width: 700px;
+    margin: 10px auto 20px; /* Centraliza o texto */
+}
+
+.link-internal {
+    color: var(--accent); /* Cor dourada/turquesa dependendo da sua paleta atual */
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* Responsividade Mobile (Volta para 1 coluna) */
+@media (max-width: 768px) {
+    .services-grid.layout-2-2-1 {
+        grid-template-columns: 1fr; /* Uma coluna só no celular */
+    }
+    /* No celular o full continua sendo full, mas em 1 coluna */
+    .service-item.service-full {
+        grid-column: auto; 
+    }
+}
