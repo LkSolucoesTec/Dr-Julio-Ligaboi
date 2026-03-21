@@ -19,6 +19,121 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================
+    // ANIMAÇÃO TYPEWRITER (PRELOADER CINEMÁTICO)
+    // =========================================
+    const preloader = document.getElementById('preloader');
+    const textElement = document.getElementById('typewriter-text');
+    
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+    async function typeWriterEffect() {
+        const typeSpeed = 50;  // Velocidade da digitação
+        const deleteSpeed = 25; // Velocidade apagando
+        
+        // --- FRASE 1 ---
+        const phrase1Part1 = "Advocacia que protege seus direitos com firmeza, clareza e justiça.";
+        // Apaga 20 caracteres exatos (", clareza e justiça.")
+        const phrase1DeleteLength = 16; 
+        // O que sobra: "...com firmeza"
+        // O que entra (Ponto + Espaço + Texto):
+        const phrase1Part2 = " Sempre com justiça.";
+        
+        // --- FRASE 2 ---
+        const phrase2Part1 = "Defenda sua causa com estratégia, experiência e confiança.";
+        // Apaga 26 caracteres exatos (", experiência e confiança.")
+        const phrase2DeleteLength = 22; 
+        // O que sobra: "...com estratégia"
+        // O que entra (Ponto + Espaço + Texto):
+        const phrase2Part2 = " com DR. Julio Ligaboi.";
+
+        // Função para digitar (com suporte a cor azul neon)
+        async function typeText(text, isHighlight = false) {
+            if (isHighlight) {
+                // Cria um span com a cor azul antes de digitar
+                textElement.innerHTML += `<span class="highlight-type"></span>`;
+            }
+            
+            for (let i = 0; i < text.length; i++) {
+                if (isHighlight) {
+                    // Digita dentro do span azul
+                    const spans = textElement.querySelectorAll('.highlight-type');
+                    spans[spans.length - 1].innerHTML += text.charAt(i);
+                } else {
+                    // Digita branco normal
+                    textElement.innerHTML += text.charAt(i);
+                }
+                await sleep(typeSpeed);
+            }
+        }
+
+        // Função para apagar o texto normal
+        async function deleteText(amount) {
+            for (let i = 0; i < amount; i++) {
+                textElement.innerText = textElement.innerText.slice(0, -1);
+                await sleep(deleteSpeed);
+            }
+        }
+
+        // Início da Animação
+        await sleep(500); // Respiro inicial
+        
+        await typeText(phrase1Part1);
+        await sleep(900); // Pausa leitura
+        await deleteText(phrase1DeleteLength);
+        await sleep(300);
+        await typeText(phrase1Part2, true); // true = escreve em azul neon!
+        
+        await sleep(1500); // Pausa leitura final
+        
+        textElement.innerHTML = ""; // Limpa tela
+        await sleep(400);
+
+        await typeText(phrase2Part1);
+        await sleep(900);
+        await deleteText(phrase2DeleteLength);
+        await sleep(300);
+        await typeText(phrase2Part2, true); // true = escreve em azul neon!
+
+        await sleep(1500); // Pausa antes de revelar o site
+
+        // Revela o site suavemente
+        preloader.classList.add('fade-out');
+        document.body.style.overflow = 'auto'; // Destrava o scroll
+        
+        // Remove o preloader do caminho após a animação (1.5s)
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 1500);
+    }
+
+        // Trava o scroll enquanto carrega
+    document.body.style.overflow = 'hidden';
+    
+    // Roda se o preloader existir na tela
+    if(preloader && textElement) {
+        typeWriterEffect();
+    }
+
+    // =========================================
+    // FUNÇÃO PARA PULAR A ANIMAÇÃO
+    // =========================================
+    window.skipIntro = function() {
+        const preloader = document.getElementById('preloader');
+        if (preloader && !preloader.classList.contains('fade-out')) {
+            // Inicia o sumiço da tela preta
+            preloader.classList.add('fade-out');
+            
+            // Devolve a barra de rolagem imediatamente
+            document.body.style.overflow = 'auto';
+            
+            // Remove o elemento do caminho após a transição (1.5s)
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 1500);
+        }
+    };
+
+    // =========================================
     // 2. Menu Mobile (Responsividade)
     // =========================================
     const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
@@ -40,6 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    
 
     // =========================================
     // 3. Smooth Scroll & Fechar Menu Mobile

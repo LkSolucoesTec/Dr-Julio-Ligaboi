@@ -109,6 +109,98 @@ img { max-width: 100%; display: block; }
 }
 
 /* =========================================
+   ANIMAÇÃO DE ENTRADA (PRELOADER)
+   ========================================= */
+#preloader {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    z-index: 99999;
+    display: flex; align-items: center; justify-content: center;
+    /* Fundo IDÊNTICO ao do Hero para transição invisível */
+    background-color: var(--bg-deep);
+    background-image: 
+        radial-gradient(circle at top right, #283b48 0%, var(--bg-deep) 60%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 40px);
+    transition: opacity 1.5s ease-in-out, visibility 1.5s;
+}
+
+#preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    max-width: 900px;
+    padding: 0 30px;
+    text-align: center;
+}
+
+.typewriter {
+    font-family: var(--font-title);
+    font-size: 2.8rem;
+    color: white;
+    line-height: 1.4;
+    border-right: 3px solid var(--accent);
+    padding-right: 5px;
+    animation: blink-cursor 0.75s step-end infinite;
+}
+
+/* A cor turquesa para o texto reescrito */
+.highlight-type {
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(0, 166, 192, 0.5);
+    font-weight: 700;
+}
+
+@keyframes blink-cursor {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--accent); }
+}
+
+@media (max-width: 768px) {
+    .typewriter { font-size: 1.8rem; }
+}
+
+/* Botão Pular Intro */
+.skip-btn {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.skip-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0, 166, 192, 0.05);
+    box-shadow: 0 0 15px rgba(0, 166, 192, 0.3);
+}
+
+/* Ajuste do botão no celular */
+@media (max-width: 768px) {
+    .skip-btn {
+        bottom: 20px;
+        right: 20px;
+        padding: 8px 15px;
+        font-size: 0.75rem;
+    }
+}
+
+/* =========================================
    2. Elementos Abstratos & Transições
    ========================================= */
 
@@ -215,8 +307,11 @@ img { max-width: 100%; display: block; }
     min-height: 100vh;
     display: flex;
     align-items: center;
-    /* Degradê sutil de fundo */
-    background: radial-gradient(circle at top right, #283b48 0%, var(--bg-deep) 60%);
+    background-color: var(--bg-deep);
+    /* Fundo IDÊNTICO ao do Preloader */
+    background-image: 
+        radial-gradient(circle at top right, #283b48 0%, var(--bg-deep) 60%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 40px);
 }
 
 .hero-container {
@@ -271,6 +366,78 @@ img { max-width: 100%; display: block; }
 }
 
 /* =========================================
+   SELO OAB FLUTUANTE (HERO)
+   ========================================= */
+.oab-badge {
+    position: absolute;
+    bottom: -20px;
+    left: -30px;
+    background: rgba(34, 40, 49, 0.85); /* Efeito de vidro escuro */
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 166, 192, 0.3); /* Borda sutil turquesa */
+    padding: 15px 25px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    z-index: 10;
+    /* Animação suave de flutuação */
+    animation: float-badge 4s ease-in-out infinite;
+}
+
+@keyframes float-badge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.oab-icon {
+    background: var(--accent);
+    color: var(--bg-deep);
+    width: 45px; 
+    height: 45px;
+    border-radius: 50%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    font-size: 1.2rem;
+    box-shadow: 0 0 15px rgba(0, 166, 192, 0.5);
+}
+
+.oab-info { 
+    display: flex; 
+    flex-direction: column; 
+    text-align: left;
+}
+
+.oab-title { 
+    font-size: 0.70rem; 
+    color: rgba(255,255,255,0.6); 
+    text-transform: uppercase; 
+    letter-spacing: 1.5px; 
+    font-weight: 600;
+}
+
+.oab-number { 
+    font-size: 1.3rem; 
+    font-weight: 700; 
+    color: white; 
+    font-family: var(--font-title); 
+    letter-spacing: 1px;
+}
+
+/* Ajuste para não quebrar no celular */
+@media (max-width: 768px) {
+    .oab-badge {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -25px;
+        width: max-content;
+        animation: none; /* Remove a flutuação no mobile para evitar sobreposição estranha */
+    }
+}
+
+/* =========================================
    5. Seção Sobre (Transição Slate)
    ========================================= */
 .about-section {
@@ -314,363 +481,636 @@ img { max-width: 100%; display: block; }
 }
 
 /* =========================================
-   6. Áreas de Atuação (Cards Elegantes)
+   6. Áreas de Atuação (Parallax Flipping Cards)
    ========================================= */
 .services-section {
     padding: 140px 0;
-    background-color: var(--bg-deep); /* Volta para o escuro */
+    background-color: var(--bg-deep);
+    position: relative;
 }
 
-/* Transição do Slate para o Deep */
 .services-section::before {
     content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 150px;
     background: linear-gradient(to bottom, var(--bg-slate), transparent);
 }
 
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    position: relative; z-index: 2;
+.wrapper {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
-.service-item {
-    background: rgba(40, 59, 72, 0.4); /* Fundo muito sutil */
-    padding: 50px 35px;
-    border-radius: 15px;
+.cols {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; /* Espaçamento entre os cards */
+}
+
+.col {
+    width: calc(33.333% - 20px); /* 3 cards por linha no desktop */
+    cursor: pointer;
+}
+
+.flip-container {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    position: relative;
+}
+
+/* Base das faces */
+.front,
+.back {
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px; /* Bordas mais suaves */
+    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    backface-visibility: hidden;
+    text-align: center;
+    min-height: 380px; /* Altura dos cards */
+    height: auto;
+    color: #fff;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
     border: 1px solid rgba(255,255,255,0.05);
-    transition: var(--transition);
 }
 
-.service-item:hover {
-    background: rgba(40, 59, 72, 0.8);
-    transform: translateY(-10px);
-    border-color: var(--accent);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+/* Capa Escura na Frente para destacar o texto */
+.front:after {
+    position: absolute;
+    top: 0; left: 0; z-index: 1;
+    width: 100%; height: 100%;
+    content: '';
+    background-color: var(--bg-deep);
+    opacity: 0.75; /* Escurece a imagem de fundo */
+    border-radius: 15px;
 }
 
-.service-item i {
+/* O Verso (Turquoise Gradient) */
+.back {
+    position: absolute;
+    top: 0; left: 0; width: 100%;
+    background: linear-gradient(135deg, var(--bg-slate) 0%, var(--bg-deep) 100%);
+    border: 2px solid transparent; /* Prepara a borda invisível */
+}
+
+/* O Efeito de Giro ao passar o mouse */
+.col:hover .flip-container .front,
+.col.hover .flip-container .front {
+    transform: rotateY(-180deg);
+}
+
+/* Aqui acontece a mágica do Neon! */
+.col:hover .flip-container .back,
+.col.hover .flip-container .back {
+    transform: rotateY(0deg);
+    border: 2px solid var(--accent); /* Acende a borda turquesa */
+    /* Brilho Neon: Externo forte + Interno sutil */
+    box-shadow: 0 0 35px rgba(0, 166, 192, 0.6), inset 0 0 15px rgba(0, 166, 192, 0.2); 
+}
+
+/* Efeito Parallax Interno (O texto parece flutuar) */
+.inner {
+    transform: translateY(-50%) translateZ(60px) scale(0.94);
+    top: 50%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    box-sizing: border-box;
+    perspective: inherit;
+    z-index: 2;
+}
+
+/* Estados Iniciais de Rotação */
+.flip-container .front { transform: rotateY(0deg); }
+.flip-container .back { transform: rotateY(180deg); }
+
+/* O Efeito de Giro ao passar o mouse */
+.col {
+    width: calc(33.333% - 20px);
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    transition: z-index 0.6s step-start; /* Impede que o card fique por baixo dos outros ao crescer */
+}
+
+.col:hover, .col.hover {
+    z-index: 10; /* Joga o card pra frente ao passar o mouse */
+}
+
+.flip-container {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    position: relative;
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); /* Animação suave para crescer */
+}
+
+/* Faz o card crescer 5% ao passar o mouse */
+.col:hover .flip-container,
+.col.hover .flip-container {
+    transform: scale(1.05);
+}
+
+/* Estilização do Conteúdo (Textos e Ícones) */
+.front .inner .card-icon {
     font-size: 2.5rem;
     color: var(--accent);
-    margin-bottom: 25px;
-    transition: 0.3s;
-}
-
-.service-item:hover i { transform: scale(1.2); text-shadow: 0 0 15px var(--accent); }
-
-.service-item h3 {
-    color: white;
     margin-bottom: 15px;
+    text-shadow: 0 0 15px rgba(0, 166, 192, 0.5);
+}
+
+.front .inner p {
     font-family: var(--font-title);
-    font-size: 1.4rem;
+    font-size: 1.8rem;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    position: relative;
 }
 
-.service-item p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
-
-/* =========================================
-   7. Contato Split (Alinhamento Perfeito)
-   ========================================= */
-.contact-section { 
-    padding: 0; 
-    background-color: #1a1c24; /* Mais escuro ainda para o fim */
+/* Linha decorativa abaixo do título */
+.front .inner p:after {
+    content: '';
+    width: 3rem;
+    height: 2px;
+    position: absolute;
+    background: var(--accent);
+    display: block;
+    left: 0; right: 0;
+    margin: 0 auto;
+    bottom: -1rem;
 }
 
-.contact-wrapper {
-    display: flex; 
-    flex-wrap: wrap;
-    align-items: stretch; /* O SEGREDO: Estica para altura igual */
-    width: 100%;
-}
-
-/* Lado Esquerdo: Form */
-.contact-form-area {
-    flex: 1;
-    padding: 100px 5%;
-    background: var(--bg-deep);
-    display: flex; flex-direction: column; justify-content: center;
-}
-
-.contact-form-area h3 { color: white; margin-bottom: 10px; font-size: 2rem; font-family: var(--font-title); }
-
-.form-elegant input, .form-elegant select, .form-elegant textarea {
-    width: 100%;
-    padding: 18px;
-    margin-bottom: 25px;
-    background-color: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: white;
-    border-radius: 8px;
+.front .inner span {
+    color: var(--text-light);
     font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.form-elegant input:focus, .form-elegant textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 10px rgba(0, 166, 192, 0.2);
+.back .inner p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-light);
 }
 
-.btn-block { width: 100%; background: var(--accent); color: white; border: none; }
-.btn-block:hover { background: #008fa6; box-shadow: 0 0 20px rgba(0, 166, 192, 0.4); }
+/* Responsividade dos Cards */
+@media screen and (max-width: 1024px){
+    .col { width: calc(50% - 15px); } /* 2 por linha */
+}
+
+@media screen and (max-width: 600px){
+    .col { width: 100%; margin-bottom: 15px; } /* 1 por linha */
+    .cols { gap: 15px; }
+}
 
 /* =========================================
-   7. Contato Split (Refinado & Pulsante)
+   7. Contato, WhatsApp e Redes Sociais
    ========================================= */
-
-/* Animação de Pulso para o Botão */
-@keyframes pulse-green {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-    }
-    70% {
-        transform: scale(1.05);
-        box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); /* Efeito de onda */
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-    }
-}
 
 .contact-section { 
     padding: 0; 
-    /* Fundo base escuro */
     background-color: var(--bg-deep); 
     position: relative;
     z-index: 5;
 }
 
-.contact-wrapper {
-    display: flex; 
-    flex-wrap: wrap;
-    align-items: stretch; 
+/* Novo Container Centralizado */
+.contact-container-centered {
+    max-width: 800px; /* Mantém o form com um tamanho elegante */
+    margin: 0 auto;
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px; /* Espaço entre o Form, o Whats e as Redes */
+}
+
+.text-center { text-align: center; }
+
+/* --- 1. Formulário --- */
+.centered-form {
     width: 100%;
+    background: transparent;
 }
 
-/* Lado Esquerdo: Formulário */
-.contact-form-area {
-    flex: 1.2; /* Dá um pouco mais de espaço horizontal ao form */
-    padding: 100px 8%; /* Mais respiro lateral */
-    background: var(--bg-deep);
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-}
-
-.contact-form-area h3 { 
+.centered-form h3 { 
     color: white; 
     margin-bottom: 15px; 
-    font-size: 2.2rem; 
+    font-size: 2.5rem; 
     font-family: var(--font-title); 
 }
 
-.contact-form-area p {
+.subtitle-form {
     color: rgba(255,255,255,0.6);
     margin-bottom: 40px;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .form-elegant input, .form-elegant select, .form-elegant textarea {
     width: 100%;
-    padding: 20px; /* Inputs mais altos e luxuosos */
+    padding: 20px;
     margin-bottom: 25px;
     background-color: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08); /* Borda quase invisível */
+    border: 1px solid rgba(255,255,255,0.08);
     color: white;
     border-radius: 8px;
     font-family: var(--font-body);
     transition: var(--transition);
 }
 
-.form-elegant input:focus, .form-elegant textarea:focus {
+/* CORREÇÃO DO FUNDO BRANCO NAS OPÇÕES DO SELECT */
+.form-elegant select option {
+    background-color: var(--bg-deep);
+    color: var(--text-light);
+}
+
+.form-elegant input:focus, .form-elegant select:focus, .form-elegant textarea:focus {
     outline: none;
     border-color: var(--accent);
-    background-color: rgba(0, 166, 192, 0.05); /* Leve toque turquesa no fundo */
+    background-color: rgba(0, 166, 192, 0.05);
     box-shadow: 0 0 15px rgba(0, 166, 192, 0.1);
 }
 
 .btn-block { width: 100%; background: var(--accent); color: white; border: none; }
 .btn-block:hover { background: #008fa6; box-shadow: 0 10px 30px rgba(0, 166, 192, 0.3); }
 
-/* Lado Direito: WhatsApp (Redesenhado) */
-.contact-whatsapp-area {
-    flex: 1;
-    /* Degradê suave da esquerda (cor do form) para direita (cor slate) */
-    background: linear-gradient(90deg, var(--bg-deep) 0%, var(--bg-slate) 100%);
-    padding: 100px 5%;
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
+/* --- 2. Box do WhatsApp Personalizado --- */
+.custom-whatsapp-cta {
+    display: flex;
     align-items: center;
-    text-align: center;
-    position: relative;
+    justify-content: center;
+    gap: 30px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.dr-photo-wrapper {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
     overflow: hidden;
-    /* Sombra suave à esquerda para criar profundidade sobre o form */
-    box-shadow: -20px 0 50px rgba(0,0,0,0.3); 
-    border-left: none; /* Removemos a linha dura */
+    border: 3px solid var(--accent);
+    box-shadow: 0 0 25px rgba(0, 166, 192, 0.4);
+    flex-shrink: 0;
 }
 
-/* Ícone de fundo gigante decorativo */
-.contact-whatsapp-area::before {
-    content: '\f232'; /* FontAwesome WhatsApp Icon */
-    font-family: "Font Awesome 6 Brands";
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%) rotate(-15deg);
-    font-size: 25rem;
-    color: rgba(255,255,255,0.02); /* Muito sutil */
-    z-index: 1;
-    pointer-events: none;
+.dr-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.whatsapp-content {
-    position: relative;
-    z-index: 2;
-    max-width: 450px; /* Limita largura para não espalhar o texto */
-}
+.whatsapp-cta-text { text-align: left; }
 
-/* Título de Impacto */
-.whatsapp-content h3 {
+.whatsapp-cta-text h4 {
     font-family: var(--font-title);
-    font-size: 3.0rem; /* Muito maior */
-    line-height: 1.1;
+    font-size: 2rem;
     color: white;
-    margin-bottom: 20px;
-    text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    margin-bottom: 10px;
 }
 
-/* Subtítulo de Ação */
-.whatsapp-content p {
-    font-family: var(--font-body);
-    font-size: 1.2rem;
-    color: var(--accent); /* Cor turquesa para destacar */
-    margin-bottom: 50px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+.whatsapp-cta-text p {
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 25px;
+    font-size: 1.1rem;
 }
 
-/* Botão WhatsApp Pulsante */
-.btn-whatsapp {
+/* Botão Pulsante Green */
+@keyframes pulse-green {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.btn-whatsapp-pulse {
     display: inline-flex; 
     align-items: center; 
     justify-content: center; 
-    gap: 15px;
-    padding: 25px 60px; /* Botão generoso */
+    gap: 12px;
+    padding: 16px 40px;
     background-color: #25D366;
     color: white;
-    font-weight: 800; /* Extra bold */
-    border-radius: 100px;
-    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 50px;
+    font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    /* Aplica a animação criada acima */
     animation: pulse-green 2s infinite;
+    transition: var(--transition);
+}
+
+.btn-whatsapp-pulse:hover {
+    background-color: #1ebe57;
+    transform: scale(1.05);
+    animation: none;
+}
+
+/* --- 3. Redes Sociais Animadas --- */
+.social-section {
+    width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 50px;
+}
+
+.social-section h4 {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.social-section p {
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 30px;
+}
+
+.social-wrapper {
+    display: inline-flex;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.social-wrapper .icon {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05); /* Fundo escuro adaptado */
+    color: white;
+    border-radius: 50%;
+    padding: 15px;
+    margin: 10px;
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
-.btn-whatsapp:hover { 
-    background-color: #1ebe57; 
-    animation: none; /* Para a animação no hover para feedback estático */
-    transform: scale(1.1); /* Cresce um pouco */
-    box-shadow: 0 10px 40px rgba(37, 211, 102, 0.5);
+.social-wrapper .tooltip {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    background: #ffffff;
+    color: var(--bg-deep); /* Letra escura no tooltip branco */
+    font-weight: 600;
+    padding: 5px 8px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Responsividade do Contato */
-@media (max-width: 900px) {
-    .contact-wrapper { flex-direction: column; }
-    
-    .contact-whatsapp-area {
-        padding: 80px 20px;
-        background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-slate) 100%); /* Degradê vertical no mobile */
-        box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.5); /* Sombra interna no topo */
+.social-wrapper .tooltip::before {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+    background: #ffffff;
+    bottom: -3px;
+    left: 50%;
+    transform: translate(-50%) rotate(45deg);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.social-wrapper .icon:hover .tooltip {
+    top: -45px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.social-wrapper .icon:hover span,
+.social-wrapper .icon:hover .tooltip {
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* Cores Hover das Redes */
+.social-wrapper .facebook:hover,
+.social-wrapper .facebook:hover .tooltip,
+.social-wrapper .facebook:hover .tooltip::before {
+    background: #1877F2; color: #ffffff; border-color: #1877F2;
+}
+.social-wrapper .twitter:hover,
+.social-wrapper .twitter:hover .tooltip,
+.social-wrapper .twitter:hover .tooltip::before {
+    background: #000000; color: #ffffff; border-color: #000000; /* X atualizado */
+}
+.social-wrapper .instagram:hover,
+.social-wrapper .instagram:hover .tooltip,
+.social-wrapper .instagram:hover .tooltip::before {
+    background: #E4405F; color: #ffffff; border-color: #E4405F;
+}
+.social-wrapper .whatsapp:hover,
+.social-wrapper .whatsapp:hover .tooltip,
+.social-wrapper .whatsapp:hover .tooltip::before {
+    background: #25D366; color: #ffffff; border-color: #25D366;
+}
+.social-wrapper .youtube:hover,
+.social-wrapper .youtube:hover .tooltip,
+.social-wrapper .youtube:hover .tooltip::before {
+    background: #CD201F; color: #ffffff; border-color: #CD201F;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+    .custom-whatsapp-cta {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
     }
-    
-    .whatsapp-content h3 { font-size: 2.5rem; }
-    .btn-whatsapp { width: 100%; padding: 20px; }
+    .whatsapp-cta-text {
+        text-align: center;
+    }
 }
 
 /* =========================================
-   8. Footer & Mobile
+   8. Footer Premium & LKS Soluções CTA
    ========================================= */
 .main-footer {
-    padding: 50px 0;
-    background-color: #15171e;
+    background-color: #11141a; /* Fundo ainda mais escuro para dar profundidade */
+    padding: 80px 0 0 0;
+    border-top: 1px solid rgba(0, 166, 192, 0.1); /* Linha sutil turquesa no topo */
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr; /* Proporção das colunas */
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.footer-brand h4 {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    color: white;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.footer-brand p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    max-width: 400px;
+}
+
+/* Títulos das colunas de Links e Contato */
+.footer-links h4, .footer-contact h4 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    position: relative;
+    font-family: var(--font-title);
+}
+
+/* Tracinho turquesa embaixo do título */
+.footer-links h4::after, .footer-contact h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 30px;
+    height: 2px;
+    background: var(--accent);
+}
+
+.footer-links ul li, .footer-contact ul li {
+    margin-bottom: 18px;
+}
+
+.footer-links ul li a, .footer-contact ul li a {
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+}
+
+.footer-links ul li a:hover, .footer-contact ul li a:hover {
+    color: var(--accent);
+    transform: translateX(5px); /* Efeito sutil de ir para a direita */
+}
+
+.footer-contact i {
+    color: var(--accent);
+    font-size: 1.1rem;
+    width: 20px;
     text-align: center;
+}
+
+.footer-links i {
+    font-size: 0.8rem;
+    color: var(--accent);
+}
+
+/* =========================================
+   RODAPÉ INFERIOR & LKS CTA
+   ========================================= */
+.footer-bottom {
+    background-color: #0a0c10; /* Fundo super escuro (quase preto) */
+    padding: 20px 0;
     border-top: 1px solid rgba(255,255,255,0.05);
 }
-.footer-logo h4 { color: var(--accent); letter-spacing: 2px; margin-bottom: 20px; }
 
-@media (max-width: 992px) {
-    .hero-text-col h1 { font-size: 3.5rem; }
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-@media (max-width: 768px) {
-    .navbar { top: 0; width: 100%; border-radius: 0; padding: 15px 20px; }
-    .navbar.scrolled { top: 0; padding: 15px 20px; border-radius: 0; }
-    .hero-section { padding-top: 120px; text-align: center; }
-    .hero-container, .about-container { flex-direction: column-reverse; }
-    .contact-wrapper { flex-direction: column; }
-    
-    .nav-links { display: none; } 
-    .mobile-menu-icon { display: block; }
-    
-    .nav-links.active {
-        display: flex; position: fixed; top: 70px; left: 0; width: 100%;
-        background-color: var(--bg-deep); padding: 30px; flex-direction: column;
-        border-bottom: 1px solid var(--accent);
-    }
+.footer-bottom-content p {
+    font-size: 0.85rem;
+    margin: 0;
 }
 
-/* Layout Específico 2x2+1 para Serviços */
-.services-grid.layout-2-2-1 {
-    display: grid;
-    /* Força exatamente 2 colunas de tamanho igual */
-    grid-template-columns: 1fr 1fr; 
-    gap: 30px;
+/* A Caixa de Destaque da LKS Soluções */
+.lks-cta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(0, 166, 192, 0.05);
+    padding: 8px 15px 8px 25px;
+    border-radius: 50px;
+    border: 1px solid rgba(0, 166, 192, 0.2);
 }
 
-/* Estilo do Card Full (Mentoria) */
-.service-item.service-full {
-    /* Faz o card ocupar todas as colunas da linha (de 1 até o final) */
-    grid-column: 1 / -1; 
-    
-    /* Destaque visual para diferenciar */
-    background: linear-gradient(135deg, var(--blue-main), var(--blue-deep));
-    text-align: center;
-    border: 1px solid var(--accent); /* Borda sutil na cor de destaque */
+.lks-cta p {
+    color: rgba(255,255,255,0.8);
 }
 
-/* Ajustes de texto dentro do card full */
-.service-item.service-full h3,
-.service-item.service-full p, 
-.service-item.service-full i {
-    color: white; /* Garante leitura no fundo azul */
+.lks-cta strong {
+    color: white;
 }
 
-.service-item.service-full p {
-    max-width: 700px;
-    margin: 10px auto 20px; /* Centraliza o texto */
-}
-
-.link-internal {
-    color: var(--accent); /* Cor dourada/turquesa dependendo da sua paleta atual */
+/* Botão Neon Exclusivo da Agência */
+.btn-lks {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 0.9rem;
     letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
 }
 
-/* Responsividade Mobile (Volta para 1 coluna) */
-@media (max-width: 768px) {
-    .services-grid.layout-2-2-1 {
-        grid-template-columns: 1fr; /* Uma coluna só no celular */
+.btn-lks:hover {
+    background: var(--accent);
+    color: var(--bg-deep);
+    box-shadow: 0 0 20px rgba(0, 166, 192, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Responsividade do Footer */
+@media (max-width: 900px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
     }
-    /* No celular o full continua sendo full, mas em 1 coluna */
-    .service-item.service-full {
-        grid-column: auto; 
+    
+    .footer-brand p {
+        margin: 0 auto;
+    }
+
+    .footer-links h4::after, .footer-contact h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-links ul li a, .footer-contact ul li a {
+        justify-content: center;
+    }
+
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .lks-cta {
+        flex-direction: column;
+        border-radius: 15px;
+        padding: 20px;
+        width: 100%;
     }
 }

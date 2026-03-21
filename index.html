@@ -18,6 +18,16 @@
 </head>
 <body>
 
+    <div id="preloader" class="preloader-bg" onclick="skipIntro()">
+        <div class="preloader-content">
+            <span id="typewriter-text" class="typewriter"></span>
+        </div>
+        
+        <button class="skip-btn" onclick="event.stopPropagation(); skipIntro()">
+            Pular Intro <i class="fa-solid fa-forward-step"></i>
+        </button>
+    </div>
+
     <header class="navbar" id="navbar">
         <div class="container navbar-container">
             <div class="logo">
@@ -33,8 +43,7 @@
             </nav>
 
             <div class="social-icons">
-                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/adv.julioligaboi?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
             </div>
             
             <div class="mobile-menu-icon">
@@ -53,6 +62,17 @@
                 </div>
                 <div class="hero-image-col">
                     <img src="assets/Julio hero.jpeg" alt="Dr. Julio Ligaboi" class="hero-img">
+                    
+                    <div class="oab-badge">
+                        <div class="oab-icon">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <div class="oab-info">
+                            <span class="oab-title">OAB/SP Ativa</span>
+                            <span class="oab-number">544.494</span> 
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="abstract-lines"></div>
@@ -75,50 +95,139 @@
         <section id="atuacao" class="services-section has-abstract-bg">
             <div class="container">
                 <h2 class="section-title center">Áreas de Atuação</h2>
-               <div class="services-grid layout-2-2-1">
-    
-    <div class="service-item">
-        <i class="fa-solid fa-handcuffs"></i>
-        <h3>Direito Penal</h3>
-        <p>Defesa técnica especializada, acompanhamento em delegacias e processos criminais.</p>
-    </div>
+                
+                <div class="wrapper">
+                    <div class="cols">
+                        
+                        <div class="col" ontouchstart="this.classList.toggle('hover');">
+                            <div class="flip-container">
+                                <div class="front" style="background-image: url('assets/tributario.png')">
+                                    <div class="inner">
+                                        <i class="fa-solid fa-landmark card-icon"></i>
+                                        <p>Direito<br>Tributário</p>
+                                        <span>Proteção Patrimonial</span>
+                                    </div>
+                                </div>
+                                <div class="back">
+                                    <div class="inner">
+                                        <p>Planejamento, consultoria e contencioso tributário para proteção e otimização do seu patrimônio empresarial e pessoal.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="service-item">
-        <i class="fa-solid fa-scale-balanced"></i>
-        <h3>Direito Civil</h3>
-        <p>Elaboração de contratos, direito de família, sucessões e resolução de conflitos.</p>
-    </div>
+                        <div class="col" ontouchstart="this.classList.toggle('hover');">
+                            <div class="flip-container">
+                                <div class="front" style="background-image: url('assets/civel.png')">
+                                    <div class="inner">
+                                        <i class="fa-solid fa-scale-balanced card-icon"></i>
+                                        <p>Direito<br>Cível</p>
+                                        <span>Resolução de Conflitos</span>
+                                    </div>
+                                </div>
+                                <div class="back">
+                                    <div class="inner">
+                                        <p>Atuação estratégica em litígios complexos, indenizações e resolução de conflitos com foco absoluto em resultados.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="service-item">
-        <i class="fa-solid fa-building"></i>
-        <h3>Direito Imobiliário</h3>
-        <p>Assessoria em compra e venda, regularização de imóveis e locações.</p>
-    </div>
+                        <div class="col" ontouchstart="this.classList.toggle('hover');">
+                            <div class="flip-container">
+                               <div class="front" style="background-image: url('assets/imobiliario.png')">
+                                    <div class="inner">
+                                        <i class="fa-solid fa-building card-icon"></i>
+                                        <p>Direito<br>Imobiliário</p>
+                                        <span>Segurança em Negócios</span>
+                                    </div>
+                                </div>
+                                <div class="back">
+                                    <div class="inner">
+                                        <p>Assessoria completa em compra e venda, regularização de imóveis, leilões e estruturação de negócios imobiliários.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="service-item">
-        <i class="fa-solid fa-tags"></i>
-        <h3>Direito do Consumidor</h3>
-        <p>Defesa contra práticas abusivas, negativações indevidas e danos morais.</p>
-    </div>
+                        <div class="col" ontouchstart="this.classList.toggle('hover');">
+                            <div class="flip-container">
+                                <div class="front" style="background-image: url('assets/consumidor.png')">
+                                    <div class="inner">
+                                        <i class="fa-solid fa-user-shield card-icon"></i>
+                                        <p>Direito do<br>Consumidor</p>
+                                        <span>Defesa de Direitos</span>
+                                    </div>
+                                </div>
+                                <div class="back">
+                                    <div class="inner">
+                                        <p>Defesa implacável contra práticas abusivas, negativações indevidas e reparação por danos morais e materiais.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="service-item service-full">
-        <i class="fa-solid fa-microphone-lines"></i>
-        <h3>Mentoria & Palestras</h3>
-        <p>Compartilhando conhecimento jurídico. O Dr. Julio Ligaboi está disponível para palestras em eventos, faculdades e mentoria para jovens advogados que buscam alta performance.</p>
-        <a href="#contato" class="link-internal">Convide para seu evento <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
+                        <div class="col" ontouchstart="this.classList.toggle('hover');">
+                            <div class="flip-container">
+                                <div class="front" style="background-image: url('assets/contratual.png')">
+                                    <div class="inner">
+                                        <i class="fa-solid fa-file-signature card-icon"></i>
+                                        <p>Direito<br>Contratual</p>
+                                        <span>Blindagem Jurídica</span>
+                                    </div>
+                                </div>
+                                <div class="back">
+                                    <div class="inner">
+                                        <p>Elaboração, revisão e blindagem de contratos para garantir segurança jurídica e prevenir litígios futuros.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col" ontouchstart="this.classList.toggle('hover');">
+                            <div class="flip-container">
+                                <div class="front" style="background-image: url('assets/6.png')">
+                                    <div class="inner">
+                                        <i class="fa-solid fa-people-roof card-icon"></i>
+                                        <p>Família e<br>Sucessões</p>
+                                        <span>Planejamento Sucessório</span>
+                                    </div>
+                                </div>
+                                <div class="back">
+                                    <div class="inner">
+                                        <p>Atendimento humanizado e discreto em divórcios, partilhas, inventários e planejamento sucessório patrimonial.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                </div>
+            <div class="abstract-lines-reverse"></div>
+        </section>
 
 </div>
             <div class="abstract-lines-reverse"></div>
         </section>
 
         <section id="contato" class="contact-section">
-            <div class="container contact-wrapper">
+            <div class="container contact-container-centered">
                 
-                <div class="contact-form-area">
-                    <h3>Inicie seu Atendimento</h3>
-                    <p>Preencha os dados abaixo. Retorno em até 24h.</p>
-                    <form action="#" method="POST" class="form-elegant">
+                <div class="contact-form-area centered-form">
+                    <h3 class="text-center">Inicie seu Atendimento</h3>
+                    <p class="text-center subtitle-form">Preencha os dados abaixo. Retorno em até 24h.</p>
+                    
+                    <form action="https://formsubmit.co/drjulio@ligaboiadvocacia.com.br" method="POST" class="form-elegant">
+                        
+                     <input type="hidden" name="_subject" value="Novo Contato pelo Site - Dr. Julio Ligaboi">
+                     <input type="hidden" name="_template" value="table"> 
+                     <input type="hidden" name="_captcha" value="false"> 
+                     <input type="hidden" name="_next" value="https://www.ligaboiadvocacia.com.br"> <div class="form-group">
+                     <label for="nome">Nome Completo</label>
+                     <input type="text" id="nome" name="nome" required placeholder="Seu nome">
+                       </div>
+
                         <div class="form-group">
                             <label for="nome">Nome Completo</label>
                             <input type="text" id="nome" name="nome" required placeholder="Seu nome">
@@ -135,10 +244,12 @@
                             <label for="assunto">Assunto Jurídico</label>
                             <select id="assunto" name="assunto">
                                 <option value="" disabled selected>Selecione a área</option>
-                                <option value="criminal">Direito Criminal</option>
-                                <option value="civel">Cível / Contratos</option>
-                                <option value="familia">Família / Pensão</option>
-                                <option value="veiculos">Apreensão de Veículo</option>
+                                <option value="tributario">Direito Tributário</option>
+                                <option value="civel">Direito Cível</option>
+                                <option value="imobiliario">Direito Imobiliário</option>
+                                <option value="consumidor">Direito do Consumidor</option>
+                                <option value="contratual">Direito Contratual</option>
+                                <option value="familia">Família e Sucessões</option>
                                 <option value="outros">Outros assuntos</option>
                             </select>
                         </div>
@@ -150,14 +261,45 @@
                     </form>
                 </div>
 
-                <div class="contact-whatsapp-area">
-                    <div class="whatsapp-content">
-                        <h3>Casos Urgentes</h3>
-                        <p>Prisão em Flagrante ou Violação de Medida Protetiva</p>
-                        <p>Fale diretamente com nossa equipe pelo WhatsApp.</p>
-                        <a href="https://wa.me/5500000000000" class="btn btn-whatsapp">
-                            <i class="fa-brands fa-whatsapp"></i> Falar Agora
+                <div class="custom-whatsapp-cta">
+                    <div class="dr-photo-wrapper">
+                        <img src="assets/hero.png" alt="Dr. Julio Ligaboi" class="dr-photo">
+                    </div>
+                    <div class="whatsapp-cta-text">
+                        <h4>Fale direto com o Dr. Julio</h4>
+                        <p>Atendimento exclusivo, estratégico e totalmente sigiloso para proteger seus interesses.</p>
+                        <a href="https://wa.me/5511989246623" class="btn-whatsapp-pulse">
+                            <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
                         </a>
+                    </div>
+                </div>
+
+                <div class="social-section text-center">
+                    <h4>Conheça nossos canais oficiais</h4>
+                    <p>Fique por dentro dos bastidores do meio jurídico, das novidades e do nosso dia a dia.</p>
+                    
+                    <div class="social-wrapper">
+                        
+                        <a href="https://facebook.com/SEU_LINK_AQUI" target="_blank" class="icon facebook">
+                            <span class="tooltip">Facebook</span>
+                            <span><i class="fab fa-facebook-f"></i></span>
+                        </a>
+
+                        <a href="https://www.instagram.com/adv.julioligaboi?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="icon instagram">
+                            <span class="tooltip">Instagram</span>
+                            <span><i class="fab fa-instagram"></i></span>
+                        </a>
+
+                        <a href="https://wa.me/https://wa.me/5511989246623" target="_blank" class="icon whatsapp">
+                            <span class="tooltip">WhatsApp</span>
+                            <span><i class="fab fa-whatsapp"></i></span>
+                        </a>
+
+                        <a href="https://youtube.com/SEU_LINK_AQUI" target="_blank" class="icon youtube">
+                            <span class="tooltip">Youtube</span>
+                            <span><i class="fab fa-youtube"></i></span>
+                        </a>
+                        
                     </div>
                 </div>
 
@@ -167,14 +309,54 @@
     </main>
 
     <footer class="main-footer">
-        <div class="container footer-content">
-            <div class="footer-logo">
+        <div class="container footer-container">
+            
+            <div class="footer-brand">
                 <h4>DR. JULIO LIGABOI</h4>
+                <p>Advocacia estratégica, consultiva e combativa. Protegendo seu patrimônio, sua família e garantindo seus direitos com excelência, inteligência e sigilo absoluto.</p>
             </div>
-            <div class="footer-credits">
-                <p>&copy; 2025 Todos os direitos reservados.</p>
-                <p class="agency-tag">Design de Alto Padrão por <strong>LKS Soluçoes Technologicas</strong></p>
-                <p>Gostou do Site? Entre em contato 11 996160-8885 ou mande um email para <strong>lkssolucoestec@hotmail.com</strong></strong></p>
+
+            <div class="footer-links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="#sobre"><i class="fa-solid fa-angle-right"></i> Sobre o Dr. Julio</a></li>
+                    <li><a href="#atuacao"><i class="fa-solid fa-angle-right"></i> Áreas de Atuação</a></li>
+                    <li><a href="#contato"><i class="fa-solid fa-angle-right"></i> Fale Conosco</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contato Direto</h4>
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <a href="tel:+5511989246623">(11) 98924-6623/a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <a href="mailto:drjulio@ligaboiadvocacia.com.br">drjulio@ligaboiadvocacia.com.br</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <a href="https://maps.app.goo.gl/3P46sjCVtDVv8QQx8" target="_blank">
+                            Rua Kall Ritcher Nº 58 Conj. 24 - Morumbi, SP
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-content">
+                <p>&copy; 2026 Dr. Julio Ligaboi. Todos os direitos reservados.</p>
+                
+                <div class="lks-cta">
+                    <p>Design de Alto Padrão por <strong>LKS Soluções Tecnológicas</strong></p>
+                    <a href="https://wa.me/5511996160885?text=Olá,%20vi%20o%20site%20do%20Dr.%20Julio%20e%20gostaria%20de%20um%20orçamento!" target="_blank" class="btn-lks">
+                        <i class="fa-solid fa-rocket"></i> Quero um site assim
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
